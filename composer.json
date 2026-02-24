@@ -1,0 +1,37 @@
+{
+    "name": "jhavenz/resonance",
+    "description": "Laravel framework for reactive signal-based state management with TypeScript integration",
+    "type": "library",
+    "keywords": ["laravel", "react", "signals", "tanstack", "spa"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "dedoc/scramble": "^0.13.0",
+        "spatie/laravel-package-tools": "^1.16",
+        "laravel/framework": "^11.0|^12.0",
+        "nikic/php-parser": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jhavenz\\Resonance\\": "src/Resonance/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jhavenz\\Resonance\\ResonanceServiceProvider"
+            ],
+            "aliases": {
+                "Resonance": "Jhavenz\\Resonance\\Facades\\Resonance"
+            }
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php artisan resonance:check-deps --ansi || true"
+        ],
+        "post-update-cmd": [
+            "@php artisan resonance:check-deps --ansi || true"
+        ]
+    }
+}

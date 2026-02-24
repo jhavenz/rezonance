@@ -1,0 +1,19 @@
+# Exclude PHP files from npm package
+src/Resonance/
+config/
+stubs/
+composer.json
+composer.lock
+vendor/
+
+# Exclude development files
+.git/
+.gitignore
+tests/
+phpunit.xml
+*.log
+
+# Keep only JavaScript/TypeScript source files
+# Files included via package.json "files" field:
+# - src/js/
+# - bin/
