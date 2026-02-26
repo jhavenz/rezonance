@@ -1,5 +1,5 @@
 {
-  "name": "@jhavenz/resonance",
+  "name": "rezonance",
   "version": "0.1.0",
   "description": "Signal-based cache invalidation for Laravel + React Query",
   "keywords": [
@@ -15,12 +15,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jhavenz/resonance.git"
+    "url": "git+https://github.com/jhavenz/rezonance.git"
   },
   "bugs": {
-    "url": "https://github.com/jhavenz/resonance/issues"
+    "url": "https://github.com/jhavenz/rezonance/issues"
   },
-  "homepage": "https://github.com/jhavenz/resonance#readme",
+  "homepage": "https://github.com/jhavenz/rezonance#readme",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -58,7 +58,7 @@
   ],
   "sideEffects": false,
   "bin": {
-    "resonance": "./bin/resonance.js"
+    "rezonance": "./bin/resonance.js"
   },
   "scripts": {
     "build": "tsup",

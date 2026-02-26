@@ -1,5 +1,5 @@
 {
-    "name": "jhavenz/resonance",
+    "name": "jhavenz/rezonance",
     "description": "Signal-based cache invalidation for Laravel + React Query applications",
     "type": "library",
     "keywords": [
@@ -19,10 +19,10 @@
             "homepage": "https://github.com/jhavenz"
         }
     ],
-    "homepage": "https://github.com/jhavenz/resonance",
+    "homepage": "https://github.com/jhavenz/rezonance",
     "support": {
-        "issues": "https://github.com/jhavenz/resonance/issues",
-        "source": "https://github.com/jhavenz/resonance"
+        "issues": "https://github.com/jhavenz/rezonance/issues",
+        "source": "https://github.com/jhavenz/rezonance"
     },
     "require": {
         "php": "^8.2",
