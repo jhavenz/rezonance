@@ -1,6 +1,6 @@
 {
   "name": "@jhavenz/resonance",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Signal-based cache invalidation for Laravel + React Query",
   "keywords": [
     "laravel",
@@ -81,7 +81,7 @@
     "@tanstack/react-router": "^1.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
-    "vite": "^5.0.0 || ^6.0.0"
+    "vite": "^5.0.0 || ^6.0.0 || ^7.0.0"
   },
   "peerDependenciesMeta": {
     "vite": {
