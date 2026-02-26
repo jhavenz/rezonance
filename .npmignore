@@ -1,19 +1,39 @@
-# Exclude PHP files from npm package
-src/Resonance/
+# Source files (we ship compiled dist/)
+src/
+*.ts
+!*.d.ts
+
+# CLI source files (keep compiled .js only)
+bin/**/*.ts
+
+# PHP files (Composer package only)
+*.php
 config/
-stubs/
+src/Resonance/
 composer.json
 composer.lock
-vendor/
+phpunit.xml
+phpstan.neon
 
-# Exclude development files
+# Development files
+tests/
+coverage/
+.github/
 .git/
 .gitignore
-tests/
-phpunit.xml
-*.log
+.editorconfig
+tsconfig*.json
+tsup.config.ts
+vitest.config.ts
+*.md
+!README.md
 
-# Keep only JavaScript/TypeScript source files
-# Files included via package.json "files" field:
-# - src/js/
-# - bin/
+# IDE and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

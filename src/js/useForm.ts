@@ -29,7 +29,8 @@ export function useForm<TData extends Record<string, unknown>>(
   config: UseFormConfig<TData>
 ): UseFormReturn<TData> {
   const { route, defaultValues = {} as TData, transform } = config;
-  const { context } = useRouterState();
+  const routerState = useRouterState();
+  const context = (routerState as { context?: Record<string, unknown> }).context ?? {};
 
   const [data, setData] = useState<TData>(defaultValues as TData);
   const [errors, setErrors] = useState<ValidationErrors>({});
@@ -64,8 +65,8 @@ export function useForm<TData extends Record<string, unknown>>(
     (e?: React.FormEvent | FormData | TData) => {
       setErrors({});
 
-      if (e && 'preventDefault' in e) {
-        e.preventDefault();
+      if (e && typeof e === 'object' && 'preventDefault' in e && typeof (e as React.FormEvent).preventDefault === 'function') {
+        (e as React.FormEvent).preventDefault();
         const formElement = e.target as HTMLFormElement;
         const formData = new FormData(formElement);
         const payload = Object.fromEntries(formData.entries());
@@ -79,7 +80,7 @@ export function useForm<TData extends Record<string, unknown>>(
         return;
       }
 
-      const payload = e ?? data;
+      const payload = (e as TData) ?? data;
       mutation.mutate(transform ? transform(payload) : payload);
     },
     [data, mutation, transform]

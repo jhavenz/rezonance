@@ -24,3 +24,11 @@ export type {
 
 // NOTE: createKubbConfig is exported separately via @jhavenz/resonance/kubb
 // to avoid bundling Node.js dependencies (fs, path) in browser code
+
+// Re-export Vite plugin types for consumers who import from main
+export type {
+  ResonancePluginOptions,
+  WayfinderOptions,
+  RouterOptions,
+  AliasOptions,
+} from './vite';

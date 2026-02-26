@@ -1,0 +1,56 @@
+# ===========================================
+# Baseline: Ignore ALL hidden files and markdown
+# Then explicitly whitelist what we need
+# ===========================================
+
+# All hidden files/folders
+.*
+
+# All markdown files
+*.md
+
+# ===========================================
+# Whitelist: Essential config files
+# ===========================================
+!.gitignore
+!.gitattributes
+!.npmignore
+!.editorconfig
+
+# ===========================================
+# Whitelist: Essential documentation
+# ===========================================
+!README.md
+!LICENSE.md
+!CHANGELOG.md
+
+# ===========================================
+# Standard ignores (explicit for clarity)
+# ===========================================
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build output (library ships dist/ but we rebuild on install)
+dist/
+
+# Lock files (libraries should not ship locks)
+composer.lock
+bun.lock
+package-lock.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.temp

@@ -12,7 +12,7 @@ type RouteLoaderConfig<TParams, TSearch, TData> = {
   loader: (params?: Record<string, unknown>) => WayfinderRoute;
   params?: (params: TParams) => Record<string, unknown>;
   search?: z.ZodType<TSearch>;
-  component: React.ComponentType;
+  component: React.ComponentType<unknown>;
 };
 
 export function defineRoute<TPath extends keyof FileRoutesByPath>(path: TPath) {
@@ -22,9 +22,11 @@ export function defineRoute<TPath extends keyof FileRoutesByPath>(path: TPath) {
     return createFileRoute(path)({
       validateSearch: searchSchema,
 
-      loader: async ({ context, params, search, abortController }) => {
+      loader: async (loaderContext) => {
+        const { context, params, abortController } = loaderContext;
+        const search = (loaderContext as { search?: unknown }).search;
         const { queryClient, networkAdapter } = context as {
-          queryClient: ReturnType<typeof import('@tanstack/react-query').QueryClient['prototype']['constructor']>;
+          queryClient: { ensureQueryData: <T>(options: unknown) => Promise<T> };
           networkAdapter: NetworkAdapter;
         };
 
@@ -33,9 +35,9 @@ export function defineRoute<TPath extends keyof FileRoutesByPath>(path: TPath) {
 
         let url = routeInfo.url;
 
-        if (search && typeof search === 'object' && Object.keys(search).length > 0) {
+        if (search && typeof search === 'object' && Object.keys(search as object).length > 0) {
           const searchParams = new URLSearchParams();
-          Object.entries(search).forEach(([key, value]) => {
+          Object.entries(search as object).forEach(([key, value]) => {
             if (value !== undefined && value !== null) {
               searchParams.set(key, String(value));
             }
@@ -58,7 +60,7 @@ export function defineRoute<TPath extends keyof FileRoutesByPath>(path: TPath) {
         );
       },
 
-      component,
+      component: component as () => JSX.Element,
     });
   };
 }

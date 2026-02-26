@@ -34,11 +34,6 @@ class ResonanceServiceProvider extends ServiceProvider
                 __DIR__ . '/../../config/resonance.php' => config_path('resonance.php'),
             ], 'resonance-config');
 
-            $this->publishes([
-                __DIR__ . '/../../stubs' => base_path('stubs/resonance'),
-            ], 'resonance-stubs');
-
-            // Register commands
             $this->commands([
                 CheckDependenciesCommand::class,
                 DevCommand::class,

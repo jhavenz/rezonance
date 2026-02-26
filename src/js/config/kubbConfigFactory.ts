@@ -29,7 +29,7 @@ export interface KubbConfigOptions {
   override?: Partial<UserConfig>;
 }
 
-export function createKubbConfig(options: KubbConfigOptions = {}): UserConfig {
+export function createKubbConfig(options: KubbConfigOptions = {}): ReturnType<typeof defineConfig> {
   const appUrl = process.env.VITE_APP_URL || process.env.APP_URL || 'http://localhost:8880';
   const openApiUrl = options.openApiUrl || `${appUrl}/docs/api`;
   const outputPath = options.outputPath || './resources/js/.resonance';

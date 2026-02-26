@@ -3,8 +3,13 @@ import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { RouterProvider, createRouter, type AnyRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
-import { StrictMode } from 'react';
+import { StrictMode, type ComponentType } from 'react';
 import { createRoot } from 'react-dom/client';
+
+// Type assertion helpers for React 18/19 compatibility
+const QueryDevtoolsPanel = ReactQueryDevtoolsPanel as ComponentType<Record<string, unknown>>;
+const RouterDevtoolsPanel = TanStackRouterDevtoolsPanel as ComponentType<{ router: unknown }>;
+const Devtools = TanStackDevtools as ComponentType<{ plugins: unknown[] }>;
 import { createErrorsDevtoolsPlugin } from './devtools';
 import { createResonanceClient, type ResonanceClient } from './client/ResonanceClient';
 import { createNetworkAdapter, type NetworkAdapter } from './client/NetworkAdapter';
@@ -51,7 +56,7 @@ export function createResonanceApp(config: ResonanceConfig) {
       queryClient,
       networkAdapter: null as unknown as NetworkAdapter,
       resonanceClient: null as unknown as ResonanceClient,
-    } satisfies ResonanceContext,
+    },
     defaultPreload: 'intent',
   });
 
@@ -114,13 +119,13 @@ export function createResonanceApp(config: ResonanceConfig) {
         {
           id: 'react-query',
           name: 'React Query',
-          render: (_el: HTMLElement, _theme: 'light' | 'dark') => <ReactQueryDevtoolsPanel />,
+          render: (_el: HTMLElement, _theme: 'light' | 'dark') => <QueryDevtoolsPanel />,
           defaultOpen: false,
         },
         {
           id: 'tanstack-router',
           name: 'TanStack Router',
-          render: (_el: HTMLElement, _theme: 'light' | 'dark') => <TanStackRouterDevtoolsPanel router={router} />,
+          render: (_el: HTMLElement, _theme: 'light' | 'dark') => <RouterDevtoolsPanel router={router} />,
           defaultOpen: false,
         }
       );
@@ -130,7 +135,7 @@ export function createResonanceApp(config: ResonanceConfig) {
           <QueryClientProvider client={queryClient}>
             <RouterProvider router={router} />
             {devToolsEnabled && (
-              <TanStackDevtools plugins={plugins} />
+              <Devtools plugins={plugins} />
             )}
           </QueryClientProvider>
         </StrictMode>

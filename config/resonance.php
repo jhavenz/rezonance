@@ -8,13 +8,16 @@ return [
     |
     | Resonance integrates with Scramble to generate OpenAPI documentation.
     | Configure which API routes to document and where to serve the docs.
+    |   api_path: Routes starting with this path will be documented
+    |   docs_path: Where to serve the OpenAPI docs
+    |   middleware: Middleware for docs routes
     |
     */
     'api_docs' => [
         'enabled' => env('RESONANCE_API_DOCS_ENABLED', true),
-        'api_path' => 'api',  // Routes starting with this path will be documented
-        'docs_path' => env('RESONANCE_DOCS_PATH', 'docs/api'),  // Where to serve the OpenAPI docs
-        'middleware' => ['web'],  // Middleware for docs routes
+        'api_path' => 'api',
+        'docs_path' => env('RESONANCE_DOCS_PATH', 'docs/api'),
+        'middleware' => ['web'],
     ],
 
     /*
@@ -24,13 +27,12 @@ return [
     |
     | Enable developer-friendly features during development. These are
     | automatically disabled in production.
+    |   error_devtools: Show Whoops error pages in devtools plugin for 500+ errors
+    |   debug_signals: Log signals to browser console
     |
     */
     'dev' => [
-        // Show Whoops error pages in devtools plugin for 500+ errors
         'error_devtools' => env('RESONANCE_ERROR_DEVTOOLS', true),
-
-        // Log signals to browser console
         'debug_signals' => env('RESONANCE_DEBUG_SIGNALS', false),
     ],
 
@@ -40,13 +42,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | Configure how Resonance processes and delivers signals to the frontend.
+    |   batch: Queue signals for batch delivery (reduces response overhead)
+    |   handlers: Custom signal handlers (register your own signal types)
     |
     */
     'signals' => [
-        // Queue signals for batch delivery (reduces response overhead)
         'batch' => env('RESONANCE_BATCH_SIGNALS', true),
-
-        // Custom signal handlers (register your own signal types)
         'handlers' => [],
     ],
 ];

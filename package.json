@@ -1,64 +1,101 @@
 {
-    "name": "@jhavenz/resonance",
-    "version": "1.0.0",
-    "description": "TypeScript client for Resonance Framework",
-    "type": "module",
-    "main": "./src/js/index.ts",
-    "types": "./src/js/index.ts",
-    "exports": {
-        ".": "./src/js/index.ts",
-        "./devtools": "./src/js/devtools/index.tsx",
-        "./kubb": "./src/js/kubb.ts",
-        "./client/*": "./src/js/client/*",
-        "./hooks/*": "./src/js/hooks/*",
-        "./types/*": "./src/js/types/*",
-        "./config": "./src/config/index.ts"
+  "name": "@jhavenz/resonance",
+  "version": "1.0.0",
+  "description": "Signal-based cache invalidation for Laravel + React Query",
+  "keywords": [
+    "laravel",
+    "react-query",
+    "tanstack",
+    "cache-invalidation",
+    "signals",
+    "kubb",
+    "openapi"
+  ],
+  "author": "Jonathan Havens <jhavenz@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhavenz/resonance.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jhavenz/resonance/issues"
+  },
+  "homepage": "https://github.com/jhavenz/resonance#readme",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
-    "sideEffects": false,
-    "bin": {
-        "resonance": "./bin/resonance.js"
+    "./vite": {
+      "types": "./dist/vite.d.ts",
+      "import": "./dist/vite.js",
+      "require": "./dist/vite.cjs"
     },
-    "scripts": {
-        "build:cli": "bun build ./bin/resonance.ts --outfile ./bin/resonance.js --target=node --format=esm && bun build ./bin/commands/dev.ts --outfile ./bin/commands/dev.js --target=node --format=esm && bun build ./bin/commands/generate.ts --outfile ./bin/commands/generate.js --target=node --format=esm"
+    "./devtools": {
+      "types": "./dist/devtools.d.ts",
+      "import": "./dist/devtools.js",
+      "require": "./dist/devtools.cjs"
     },
-    "files": [
-        "src/js",
-        "bin"
-    ],
-    "dependencies": {
-        "@kubb/cli": "^4.15.0",
-        "@kubb/core": "^4.15.0",
-        "@kubb/plugin-oas": "^4.15.0",
-        "@kubb/plugin-react-query": "^4.15.0",
-        "@kubb/plugin-ts": "^4.15.0",
-        "@kubb/plugin-zod": "^4.15.0",
-        "yargs": "^18.0.0"
+    "./kubb": {
+      "types": "./dist/kubb.d.ts",
+      "import": "./dist/kubb.js",
+      "require": "./dist/kubb.cjs"
     },
-    "peerDependencies": {
-        "react": "^18.0.0 || ^19.0.0",
-        "@tanstack/react-query": "^5.0.0",
-        "@tanstack/react-router": "^1.0.0",
-        "@tanstack/react-devtools": "^0.9.0",
-        "superjson": "^2.0.0",
-        "ulid": "^3.0.0",
-        "zod": "^4.0.0"
-    },
-    "peerDependenciesMeta": {
-        "@tanstack/react-devtools": {
-            "optional": true
-        }
-    },
-    "keywords": [
-        "laravel",
-        "react",
-        "signals",
-        "tanstack",
-        "spa",
-        "resonance"
-    ],
-    "license": "MIT",
-    "devDependencies": {
-        "@types/yargs": "^17.0.35",
-        "yargs": "^18.0.0"
+    "./config": {
+      "types": "./dist/config.d.ts",
+      "import": "./dist/config.js",
+      "require": "./dist/config.cjs"
     }
+  },
+  "files": [
+    "dist",
+    "bin/**/*.js"
+  ],
+  "sideEffects": false,
+  "bin": {
+    "resonance": "./bin/resonance.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "build:cli": "bun build ./bin/resonance.ts --outfile ./bin/resonance.js --target=node --format=esm && bun build ./bin/commands/dev.ts --outfile ./bin/commands/dev.js --target=node --format=esm && bun build ./bin/commands/generate.ts --outfile ./bin/commands/generate.js --target=node --format=esm",
+    "prepublishOnly": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@kubb/cli": "^4.15.0",
+    "@kubb/core": "^4.15.0",
+    "@kubb/plugin-oas": "^4.15.0",
+    "@kubb/plugin-react-query": "^4.15.0",
+    "@kubb/plugin-ts": "^4.15.0",
+    "@kubb/plugin-zod": "^4.15.0",
+    "yargs": "^18.0.0"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.0.0",
+    "@tanstack/react-router": "^1.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "vite": "^5.0.0 || ^6.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/yargs": "^17.0.35",
+    "@vitest/coverage-v8": "^4.0.18",
+    "jsdom": "^28.1.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  }
 }

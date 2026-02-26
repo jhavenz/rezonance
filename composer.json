@@ -1,19 +1,50 @@
 {
     "name": "jhavenz/resonance",
-    "description": "Laravel framework for reactive signal-based state management with TypeScript integration",
+    "description": "Signal-based cache invalidation for Laravel + React Query applications",
     "type": "library",
-    "keywords": ["laravel", "react", "signals", "tanstack", "spa"],
+    "keywords": [
+        "laravel",
+        "react-query",
+        "tanstack",
+        "cache-invalidation",
+        "signals",
+        "openapi",
+        "scramble"
+    ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonathan Havens",
+            "email": "jhavenz@gmail.com",
+            "homepage": "https://github.com/jhavenz"
+        }
+    ],
+    "homepage": "https://github.com/jhavenz/resonance",
+    "support": {
+        "issues": "https://github.com/jhavenz/resonance/issues",
+        "source": "https://github.com/jhavenz/resonance"
+    },
     "require": {
         "php": "^8.2",
         "dedoc/scramble": "^0.13.0",
-        "spatie/laravel-package-tools": "^1.16",
+        "illuminate/support": "^10.0|^11.0|^12.0",
         "laravel/framework": "^11.0|^12.0",
-        "nikic/php-parser": "^5.0"
+        "nikic/php-parser": "^5.0",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0"
     },
     "autoload": {
         "psr-4": {
             "Jhavenz\\Resonance\\": "src/Resonance/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jhavenz\\Resonance\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -33,5 +64,13 @@
         "post-update-cmd": [
             "@php artisan resonance:check-deps --ansi || true"
         ]
-    }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
