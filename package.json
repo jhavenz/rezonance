@@ -1,6 +1,6 @@
 {
   "name": "rezonance",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Signal-based cache invalidation for Laravel + React Query",
   "keywords": [
     "laravel",
